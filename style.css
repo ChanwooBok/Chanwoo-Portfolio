@@ -162,8 +162,12 @@ p {
 .section {
     padding :50px;
     text-align: center;
-    max-width: 1200px;
     margin: auto;
+}
+
+.section__container {
+    max-width: 1200px;
+    margin:auto;
 }
 
 /* About */
@@ -230,4 +234,61 @@ p {
 
 .job__period {
     font-size: var(--font-micro);
+}
+
+/* SKill */
+
+#skills {
+    background-color: var(--color-yellow);
+}
+
+.skillset {
+    display: flex;
+    background-color: var(--color-grey);
+    color:var(--color-light-white);
+    margin: 20px 0;
+}
+
+.skillset__title {
+    color: var(--color-white);
+    margin-top: 16px;
+}
+
+.skillset__right {
+    flex-basis: 40%;
+}
+
+.skillset__left {
+    flex-basis:  60%;
+    background-color: darkgray;
+}
+
+.skill {
+    padding : 8px;
+    margin-bottom: 32px;
+}
+
+.skilldescription {
+    display: flex;
+    justify-content: space-between;
+    padding:20px 40px;
+}
+
+.skill__bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-grey);
+}
+
+.skill__value { 
+    /* width:100%; 모두에게같은값이
+    적용되어버리므로 style태그에 각각따로
+    설정해주기. */
+    height: 3px;
+    background-color: var(--color-orange);
+}
+
+.tools,
+.etc {
+    padding: 20px;
 }
