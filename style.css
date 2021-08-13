@@ -92,11 +92,22 @@ p {
 
 /* Navbar */
 #navbar {
+    position: fixed;
+    /* navbar는 항상 제일 위에 고정  되어 있으므로
+    fixed 라고 설정해준다. */
+    width: 100%;
     display: flex; 
     justify-content: space-between;
-    background-color: olivedrab;
+    background-color: transparent;
     align-items: center; 
     padding: 16px;
+    transition: all var(--animation-duration) ease-in-out;
+    
+}
+
+#navbar.navbar--dark{
+    background-color: var(--color-dark-pink);
+    padding : 10px;
 }
 
 .navbar__menu {
@@ -145,6 +156,7 @@ p {
     /* url('img/background/background.png'); 왜 안되지? */
     padding: 40px;
     text-align: center;
+    padding-top : 100px;
 }
 
 .home__avatar {
