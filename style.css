@@ -374,11 +374,16 @@ p {
     left:0;
     opacity: 0;
     transform: translateY(10px);
+    /* 위치를 10px정도 y축 아래로 맞춰놓고,
+    opcitiy가 0.8될 때 제 자리로 돌려놓을것  */
     transition: all var(--animation-duration);
 
 }
 
 .projects:hover .project__description {
+    /* projects가 마우스 hover되었을때
+    그 하위클래스인 projects description에서~
+    화면이 생겨나게~ */
     opacity: 0.8;
     transform: translateY(0px);
 }
@@ -397,4 +402,44 @@ p {
     margin-left: -12px;
     background-color: var(--color-dark-white);
     margin-top: 8px;
+}
+
+/* Testimonial */
+#testimonials {
+    background-color: var(--color-light-white);
+}
+
+.testimonials {
+    margin: 40px;
+}
+.testimonial {
+    display: flex;
+    margin: 32px 0;
+}
+
+.testimonials__speech-bubble {
+    padding : 18px;
+    background-color: var(--color-white);
+}
+
+.testimonials__avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;    
+}
+
+.testimonials__avatar:nth-child(odd) {
+    margin-right:40px;
+}
+
+.testimonials__avatar:nth-child(even) {
+    margin-left:40px;
+}
+
+.testimonials__speech-bubble p {
+    color: var(--color-grey);
+}
+
+.testimonials__speech-bubble a {
+    color: var(--color-pink);
 }
