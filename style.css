@@ -69,7 +69,7 @@ h1 {
 }
 
 h2 {
-    font-size: var(--font-regular);
+    font-size: var(--font-medium);
     font-weight: var(--weight-semi-boldbold);
     color: var(--color-black);
     margin: 8px 0 ;
@@ -442,4 +442,33 @@ p {
 
 .testimonials__speech-bubble a {
     color: var(--color-pink);
+}
+
+/* Contact */
+#contact {
+    background-color: var(--color-pink);
+}
+
+.contact__email,
+.contact__tilte,
+.contact__rights {
+    color : var(--color-white);
+}
+
+.contact__tilte {
+    margin: 32px 0;
+}
+
+.contact__links {
+    font-size: var(--font-large);
+    margin: 24px 0;
+    transition: all var(--animation-duration) ease-in;
+}
+
+.contact__links i:hover {
+    /* 만약, contact__links:hover라고만 쓰면
+    div컨테이너 자체가 커져버려서 촌스러우므로
+    div안의 icon만 선택해줘야한다. */
+    transform: scale(1.1);
+    color: var(--color-yellow);
 }
