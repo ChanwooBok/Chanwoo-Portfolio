@@ -281,7 +281,7 @@ p {
 }
 
 .skill__value { 
-    /* width:100%; 모두에게같은값이
+    /* width:100%; HTML,JAVASCRIPT,JAVA모두에게같은값이
     적용되어버리므로 style태그에 각각따로
     설정해주기. */
     height: 3px;
@@ -291,4 +291,110 @@ p {
 .tools,
 .etc {
     padding: 20px;
+}
+
+/* Work */
+.category__btn {
+    border: 1px solid var(--color-dark-white);
+    border-radius: var(--size-border-radius);
+    font-size: var(--font-regular);
+    padding: 8px 48px;
+}
+
+.work__categories {
+    margin: 40px;
+}
+
+.category__btn.active,
+.category__btn:hover {
+    background-color: var(--color-pink);
+    color: var(--color-white);
+}
+
+.category__btn.active .category__count,
+.category__btn:hover .category__count {
+    opacity: 1;
+    top:0;
+}
+
+.category__count{
+    background-color: var(--color-orange);
+    border-radius: 50%;
+    color: var(--color-white);
+    width: 24px;
+    height: 24px;
+    /* span이기 때문에 모양이 찌그러져 보인다.
+    이럴땐 inline-block처리하고 line height를 
+    span의 사이즈에 맞추면 동그랗게 가운데 온다. */
+    line-height: 24px;
+    display: inline-block;
+    position: relative;
+    top:-20px;
+    left: 4px;
+    opacity: 0;
+    transition: all var(--animation-duration);
+}
+
+.work__projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.projects {
+    position: relative;
+    /* description이 position : absolute 이므로
+    바로 가까이 위에있는 부모인 projects를 static 이
+    아닌 상태로 만들어줘야 project를 기준으로 top,left 자리를 
+    정한다. */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 250px;
+    margin: 2px;
+    background-color: var(--color-white);
+}
+
+.project__img {
+    max-width: 100%;
+    max-heigt: 100%;
+}
+
+.project__description {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all var(--animation-duration);
+
+}
+
+.projects:hover .project__description {
+    opacity: 0.8;
+    transform: translateY(0px);
+}
+
+.project__description h3{
+    color: var(--color-white);
+}
+
+.project__description h3:after {
+    content: "";
+    display: block;
+    position: relative;
+    left:50%;
+    width: 25px;
+    height: 2px;
+    margin-left: -12px;
+    background-color: var(--color-dark-white);
+    margin-top: 8px;
 }
