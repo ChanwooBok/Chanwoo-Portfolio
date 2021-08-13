@@ -126,6 +126,18 @@ p {
     
 }
 
+.navbar__toggle-btn {
+    position: absolute;
+    top:21px;
+    right: 32px;
+    font-size: 24px;
+    color: var(--color-white);
+    display: none;
+    /* opacity를 이용하면 안되는 이유:
+    숨겨지긴 하지만, 버튼이 클릭이 되버림 */
+}
+
+
 /* Home */
 
 #home {
@@ -236,6 +248,8 @@ p {
     font-size: var(--font-micro);
 }
 
+
+
 /* SKill */
 
 #skills {
@@ -292,6 +306,9 @@ p {
 .etc {
     padding: 20px;
 }
+
+
+
 
 /* Work */
 .category__btn {
@@ -471,4 +488,46 @@ p {
     div안의 icon만 선택해줘야한다. */
     transform: scale(1.1);
     color: var(--color-yellow);
+}
+
+/* For below 768px screen width */
+@media screen and (max-width : 768px) {
+  /* media query 안에는 768px이하 일때만
+ 나타나는 차이점들만 뽑아서 최소한으로 적어야 한다 */
+.navbar__toggle-btn {
+    display: block;
+}
+
+#navbar {
+    flex-direction: column;
+    align-items: flex-start;
+}
+.navbar__menu {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    display: none;
+}
+
+.about__majors {
+    flex-direction: column;
+}
+
+.major {
+    margin-bottom: 38px;
+}
+
+.skillset {
+    flex-direction: column;
+}
+
+.project {
+    flex-grow: 1;
+}
+
+.testimonials__avatar {
+    width : 80px;
+    height: 80px;
+}
+
 }
