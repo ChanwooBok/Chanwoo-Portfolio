@@ -15,3 +15,21 @@ document.addEventListener('scroll' , () => {
     }
 }
 );
+
+// Handle scrolling when tapping on the navbat menu
+const navbarMenu = document.querySelector('.navbar__menu');
+navbarMenu.addEventListener('click', (event) => {
+    
+    // dataset안에 우리가 부여한 data-link값이 저장되어있다.
+    // 항목이 아닌 빈 navbar를 클릭하면 undefined 가 나오는 문제가 발생
+    const target = event.target;
+    const link = target.dataset.link;
+    if(link == null) {
+        return;
+    }else{
+        console.log(event.target.dataset.link);
+        const scrollTo =document.querySelector(target.dataset.link);
+        scrollTo.scrollIntoView({behavior:'smooth'});
+        // 여기 작동 안됨
+    }
+});
