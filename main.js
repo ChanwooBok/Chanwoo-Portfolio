@@ -28,8 +28,18 @@ navbarMenu.addEventListener('click', (event) => {
         return;
     }else{
         console.log(event.target.dataset.link);
-        const scrollTo =document.querySelector(target.dataset.link);
-        scrollTo.scrollIntoView({behavior:'smooth'});
+        scrollIntoView(link);
         // 여기 작동 안됨
     }
 });
+
+const contactMe = document.querySelector('.home__contact');
+contactMe.addEventListener('click', () => {
+    scrollIntoView('#contact');
+    
+})
+
+function scrollIntoView(selector) {
+    const scrollTo = document.querySelector(selector);
+    scrollTo.scrollIntoView({behavior:'smooth'});
+}
