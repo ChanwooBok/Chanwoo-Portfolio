@@ -6,8 +6,9 @@ const navbar = document.querySelector('#navbar');
 const navbarHeight = navbar.getBoundingClientRect().height;
 
 document.addEventListener('scroll' , () => {
-    console.log(window.scrollY);
-    console.log(navbarHeight);
+    // document.addEventListener은 전체문서에 함수를 추가하겠다는의미이다.
+    // console.log(window.scrollY);
+    // console.log(navbarHeight);
     if(window.scrollY > navbarHeight){
         navbar.classList.add('navbar--dark');
     }else{
@@ -29,7 +30,6 @@ navbarMenu.addEventListener('click', (event) => {
     }else{
         console.log(event.target.dataset.link);
         scrollIntoView(link);
-        // 여기 작동 안됨
     }
 });
 
@@ -38,6 +38,18 @@ contactMe.addEventListener('click', () => {
     scrollIntoView('#contact');
     
 })
+
+// Make home slowly faded to transparent as the window scrolls down
+
+const home = document.querySelector('.home__container');
+const homeHeight = home.getBoundingClientRect().height;
+document.addEventListener('scroll', () =>{
+    home.style.opacity = 1- window.scrollY / homeHeight ;
+})
+
+
+
+
 
 function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
