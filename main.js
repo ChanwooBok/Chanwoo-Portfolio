@@ -90,8 +90,37 @@ workBtnContainer.addEventListener('click',(e)=> {
     if (filter == null){
         return;
     }
-    projectContainer.classList.add('anim-out');
+
+    // Remove Selection from the previous one and Select the new one
+    const active = document.querySelector('.category__btn.selected')
+    active.classList.remove('selected');
     
+    const target = e.target.nodeName === 'BUTTON' ? e.target : e.target.parentNode;
+    // 클릭한게 숫자가 아니라 버튼이면 그대로 갖다쓰고, 
+    // 아닐경우(숫자 ->span)클릭한 경우, parentNode( 즉, BUTTON)을 갖다쓰자.
+
+    target.classList.add('selected');
+    //기존에 selected된것을 지우고 새로 선택한 버튼에 selected붙인다.
+    //여기서 버튼의 번호(즉,span)을 클릭하면 error가 발생하는데 ,그 이유는
+    // span에 selected 클래스가 생겨버려서, 작동을 안하는 것이다.
+    //따라서, 버튼의 번호를 누르게 되면, span의 parentNode에 selected를 할당해줘야 한다.
+
+    projectContainer.classList.add('anim-out');
+
+    // projects.forEach( (project) => {
+    //     console.log(project.dataset.type);
+    //     if( filter ==='*' || filter === project.dataset.type) {
+    //         project.classList.remove('invisible');
+    //     }else{
+    //         project.classList.add('invisible');
+    //     }
+    // });
+    
+    // 위의 invisible추가,제거하는 행위를 anim-out하고 바로 실행하게 되면
+    // 이미 filtering 된 후에 쓸데없는 애니메이션을 추가한 느낌을 줄 수있다.
+    //따라서,anim-out을 준 후에, 0.3초뒤에 필터링을 하게 위 함수를
+    //setTimeout안에 넣어주도록 하자.
+
     setTimeout( () => {
         projects.forEach( (project) => {
             console.log(project.dataset.type);
@@ -100,7 +129,7 @@ workBtnContainer.addEventListener('click',(e)=> {
             }else{
                 project.classList.add('invisible');
             }
-        });
+        }); //setTimeout안에 넣어줌으로써, 사라졌다가 필터링 되고 나타나게 만든다.
         projectContainer.classList.remove('anim-out');
     }, 300)
     //위에서 anim-out을 준 이유는 사라졌다가 서서히 나타나는 효과를 주기위함인데,
