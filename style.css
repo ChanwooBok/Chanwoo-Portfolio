@@ -188,10 +188,14 @@ p {
     border-radius: var(--size-border-radius);
 }
 
+.home__contact:hover {
+    background-color: var(--color-orange);
+}
+
 /* section common */
 
 .section {
-    padding :50px;
+    padding :16px;
     text-align: center;
     margin: auto;
 }
@@ -335,6 +339,7 @@ p {
     border-radius: var(--size-border-radius);
     font-size: var(--font-regular);
     padding: 8px 48px;
+    position: relative;
 }
 
 .work__categories {
@@ -364,9 +369,14 @@ p {
     span의 사이즈에 맞추면 동그랗게 가운데 온다. */
     line-height: 24px;
     display: inline-block;
-    position: relative;
-    top:-20px;
-    left: 4px;
+    /* position: relative; */
+    /* 창을 작게 하였을 때 , 모양이 가운데 정렬되지 못하므로 일단 absolute로 바꾸고
+    부모 클래스인 category__btn을 static이 아닌 relative로 바꾼다. */
+    position: absolute;
+    /* top:-20px;
+    left: 4px; 이제 부모클래스인 버튼안을 기준으로 움직이므로, 바꿔줘야함.*/
+    top: -20px;
+    right: 16px;
     opacity: 0;
     transition: all var(--animation-duration);
 }
@@ -552,8 +562,23 @@ p {
 @media screen and (max-width : 768px) {
   /* media query 안에는 768px이하 일때만
  나타나는 차이점들만 뽑아서 최소한으로 적어야 한다 */
+
+:root {
+        /* Font size */
+        --font-large:30px;
+        --font-medium:18px;
+        --font-regular:16px;
+        --font-small:14px;
+        --font-micro:12px;
+    
+}
+
+
 .navbar__toggle-btn {
     display: block;
+    top:16px;
+    right:16px;
+    font-size: var(--font-medium);
 }
 
 #navbar {
@@ -572,18 +597,29 @@ p {
     display: block;
 }
 
+.section {
+    padding:16px;
+    padding-top: 40px;
+}
 
 
 .about__majors {
     flex-direction: column;
+    margin-top: 30px;
+    margin-bottom: 0px;
 }
 
 .major {
-    margin-bottom: 38px;
+    margin-bottom: 30px;
 }
 
 .skillset {
     flex-direction: column;
+}
+
+.category__btn {
+    margin: 4px 0;
+    /* width:100%; */
 }
 
 .project {
@@ -591,8 +627,44 @@ p {
 }
 
 .testimonials__avatar {
-    width : 80px;
-    height: 80px;
+    width : 120px;
+    height: 120px;
+    /* margin-bottom: 20px; */ 
+    /* margin-bottom이 설정이 안되는 이유?
+    아래에 있는 testimonials_avatar:nth-child(even)(odd)가
+    더 세부적인 조건이라서 얘네가 이긴것임. 따라서 거기가서 
+    margin bottom 을 설정해주어야 함. */
+    
 }
+
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonials__avatar:nth-child(even),
+.testimonials__avatar:nth-child(odd) {
+    margin: 0;
+    /* 위와 간격 맞추기. */
+    margin-bottom: 8px;
+}
+
+.testimonials__speech-bubble {
+    order: 1;
+    /* 큰화면일때는 html순서를 조작해서 두번째 testimonial는 말풍선이 먼저나오게 했으나
+    작은화면에서는 필요없다. order를 정해주자. 기본 1순위 order는 0이다.
+     speechbubble은 order 1로 정해주어 아바타 뒤에 오게끔 한다. */
+}
+
+.arrow-up {
+    width:50px;
+    height: 50px;
+    font-size: 30px;
+    line-height: 50px;
+    right:16px;
+    bottom:16px;
+}
+
 
 }
