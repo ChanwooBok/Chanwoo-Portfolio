@@ -27,11 +27,18 @@ navbarMenu.addEventListener('click', (event) => {
     const link = target.dataset.link;
     if(link == null) {
         return;
-    }else{
-        console.log(event.target.dataset.link);
-        scrollIntoView(link);
     }
+    navbarMenu.classList.remove('open');    
+        scrollIntoView(link);
+    
 });
+
+// Navbar toggle btn for small screen
+const navbarToggleBtn = document.querySelector('.navbar__toggle-btn');
+navbarToggleBtn.addEventListener('click', () => {
+    navbarMenu.classList.toggle('open');
+}); 
+
 
 const contactMe = document.querySelector('.home__contact');
 contactMe.addEventListener('click', () => {
