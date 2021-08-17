@@ -17,7 +17,10 @@ document.addEventListener('scroll' , () => {
 }
 );
 
-// Handle scrolling when tapping on the navbat menu
+
+
+
+// Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector('.navbar__menu');
 navbarMenu.addEventListener('click', (event) => {
     
@@ -30,7 +33,7 @@ navbarMenu.addEventListener('click', (event) => {
     }
     navbarMenu.classList.remove('open');    
         scrollIntoView(link);
-    
+     
 });
 
 // Navbar toggle btn for small screen
@@ -174,7 +177,94 @@ workBtnContainer.addEventListener('click',(e)=> {
     // }
 
 
+
+// < 스크롤 되면서 특정 섹션 지나가면 해당 섹션 navbar메뉴 활성화 시키기>
+// 1.모든 섹션 요소들을 가지고 온다.
+// 2.IntersectionObserver를 이용해 모든 섹션들을 관찰한다.
+// 3. 보여지는 섹션에 해당하는 메뉴아이템을 활성화 시킨다.
+
+const sectionIds = [
+    '#home',
+    '#about',
+    '#skills',
+    '#works',
+    '#testimonials',
+    '#contact'
+];
+
+const sections = sectionIds.map(id => document.querySelector(id));
+//배열을 각각 돌면서 새로운 돔을 만들 수 있는 기능 : map
+const navItems = sectionIds.map(id => document.querySelector(`[data-link = '${id}']`));
+
+
+let selectedNavIndex = 0;
+let selectedNavItem = navItems[0];
+
+function selectNavItem (selected) {
+    selectedNavItem.classList.remove('active');
+    //이전 인덱스 요소는remove 해준다.
+    selectedNavItem = selected;
+    selectedNavItem.classList.add('active');
+}
+
+const observerOptions = {
+    root:null,
+    rootMargin:'0px',
+    threshold: 0.3,
+};
+
+const observerCallback = (entries, observer) => {
+    entries.forEach(entry => {
+    if(!entry.isIntersecting && entry.intersectionRatio > 0 ){
+        // !entry.isIntersecting 
+        //: 페이지가 안으로 들어오는게 아니고 ,밖으로 나가며
+        // console.log(entry); : intersectipnRatio 가 0인 콜백함수가 자동으로 실행되버린다.
+        //->시작하자마자 testimonials가 보더쳐져있는 이유이다.
+
+
+        const index = sectionIds.indexOf(`#${entry.target.id}`);
+        //스크롤링이 아래로 되어서 페이지가 올라옴.
+        if(entry.boundingClientRect.y < 0){
+            selectedNavIndex = index + 1;
+        }else
+            selectedNavIndex = index - 1;
+        }
+        
+    }
+    );
+};
+
+
+
+const observer = new IntersectionObserver(observerCallback,observerOptions);
+// 새로운 옵저버를 만들어서 관찰하도록 한다.
+
+sections.forEach(section => observer.observe(section));
+// observer야 , sections 라는 배열 관찰좀 해줘
+
+window.addEventListener('scroll', () => {
+    if(window.scrollY ===0){
+        selectedNavIndex = navItems[0];
+        // 화면이 가장 위에 위치할 떄 (window.scrollY ===0)는 무조건 home에 border치기.
+
+    }else if (
+        window.scrollY + window.innerHeight ===
+        document.body.clientHeight
+        // 화면이 가장 아래에 위치할 때 는 무조건 contact( navItems배열의 가장 마지막 원소)
+        // window.scrollY는 viewport의 가장 왼쪽위, window.innerHeight는 현재 브라우저 화면의 총 높이
+        // document.body.clientHeight는 body의 총 높이를 말한다.(길이)
+    ) {
+        selectedNavIndex = navItems.length - 1;
+    }
+    selectNavItem(navItems[selectedNavIndex]);
+    // console.log(navItems[selectedNavIndex]);
+}
+);
+
+
+
 function scrollIntoView(selector) {
     const scrollTo = document.querySelector(selector);
     scrollTo.scrollIntoView({behavior:'smooth'});
+    selectNavItem(navItems[sectionIds.indexOf(selector)]);
 }

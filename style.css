@@ -131,10 +131,10 @@ p {
     white로 지정해서 border가 나타나게 하자. */
 }
 
-/* .navbar__menu__item.active {
+.navbar__menu__item.active {
     border: 1px solid var(--color-white);
     
-} */
+}
 
 
 
@@ -143,6 +143,13 @@ p {
     background-color: var(--color-pink);
     
 }
+
+.navbar__menu.page {
+    border: 1px solid var(--color-white);
+}
+
+
+
 
 .navbar__toggle-btn {
     position: absolute;
@@ -159,7 +166,7 @@ p {
 /* Home */
 
 #home {
-    background-color: palevioletred; co
+    background-color: green;
     /* url('img/background/background.png'); 왜 안되지? */
     padding: 40px;
     text-align: center;
@@ -596,6 +603,7 @@ p {
 .navbar__menu.open {
     display: block;
 }
+
 
 .section {
     padding:16px;
